@@ -1,0 +1,28 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  gather_facts: False
+
+  vars:
+      region: us-east-1
+      instance_type: t2.nano
+      ami: ami-f4cc1de2  # Ubuntu 16.04 LTS
+      keypair: edu-varun # pem file name
+  
+  tasks:
+
+    - name: Create an ec2 instance
+      ec2:
+        # aws_access_key: AKIAIBRJUYEHXTDRTTEA
+        # aws_secret_key: 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
+         key_name: "{{ keypair }}"
+         instance_type: "{{ instance_type}}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1  
+         count_tag:
+            Name: Edureka_Demo
+         instance_tags:
+            Name: Demo_Edureka
+      register: ec2
