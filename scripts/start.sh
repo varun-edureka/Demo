@@ -1,4 +1,4 @@
 #!/bin/bash
-rm -rf /var/www/html/*
-cp -avr /opt/html/* /var/www/html/
+sudo rm -rf /var/www/html/*
+sudo mv /opt/html/* /var/www/html/
 echo "hi"
